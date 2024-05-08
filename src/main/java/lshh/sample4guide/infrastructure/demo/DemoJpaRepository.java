@@ -1,4 +1,4 @@
-package lshh.sample4guide.infrastructure.home;
+package lshh.sample4guide.infrastructure.demo;
 
 import lshh.sample4guide.domain.demo.Demo;
 import org.springframework.data.jpa.repository.JpaRepository;

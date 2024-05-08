@@ -1,4 +1,4 @@
-package lshh.sample4guide.infrastructure.home;
+package lshh.sample4guide.infrastructure.demo;
 
 import lombok.RequiredArgsConstructor;
 import lshh.sample4guide.domain.demo.Demo;
