@@ -24,25 +24,6 @@ public class AdvisoryLockManager {
     }
 
     @Around("@annotation(lshh.sample4guide.common.library.lock.AdvisoryLock)")
-    public Object lock(final ProceedingJoinPoint joinPoint) throws Throwable {
-        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-        Method method = signature.getMethod();
-        AdvisoryLock advisoryLock = method.getAnnotation(AdvisoryLock.class);
-
-        String key = LOCK_PREFIX + ExpressionLanguageParser.getDynamicValue(signature.getParameterNames(), joinPoint.getArgs(), advisoryLock.key());
-        Lock lock = advisoryLockBuffer.getLock(key);
-
-        try {
-            lock.lock();
-            return aopTransaction.proceed(joinPoint);  // (3)
-        } catch (InterruptedException e) {
-            throw new InterruptedException();
-        } finally {
-            lock.unlock();
-        }
-    }
-
-    @Around("@annotation(lshh.sample4guide.common.library.lock.AdvisoryLock)")
     public Object tryLock(final ProceedingJoinPoint joinPoint) throws Throwable {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
@@ -52,11 +33,11 @@ public class AdvisoryLockManager {
         Lock lock = advisoryLockBuffer.getLock(key);
 
         try {
-            boolean available = lock.tryLock(advisoryLock.waitTime(), advisoryLock.timeUnit());  // (2)
+            boolean available = lock.tryLock(advisoryLock.waitTime(), advisoryLock.timeUnit());
             if (!available) {
                 return false;
             }
-            return aopTransaction.proceed(joinPoint);  // (3)
+            return aopTransaction.proceed(joinPoint);
         } catch (InterruptedException e) {
             throw new InterruptedException();
         } finally {

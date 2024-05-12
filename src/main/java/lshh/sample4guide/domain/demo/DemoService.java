@@ -27,7 +27,7 @@ public class DemoService {
         return demoRepository.save(demo);
     }
 
-//    @AdvisoryLock(key = "addCredit_"+"#update")
+//    @AdvisoryLock(key = "demo_"+"#update")
     @Transactional
     public void addCredit(DemoCreditAdd update) {
         Demo demo = demoRepository.findById(update.getId())
