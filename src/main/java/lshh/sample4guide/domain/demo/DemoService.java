@@ -1,6 +1,7 @@
 package lshh.sample4guide.domain.demo;
 
 import lombok.RequiredArgsConstructor;
+import lshh.sample4guide.common.library.lock.AdvisoryLock;
 import lshh.sample4guide.domain.demo.dto.DemoCreation;
 import lshh.sample4guide.domain.demo.dto.DemoCreditAdd;
 import lshh.sample4guide.domain.demo.dto.DemoVo;
@@ -26,6 +27,7 @@ public class DemoService {
         return demoRepository.save(demo);
     }
 
+//    @AdvisoryLock(key = "addCredit_"+"#update")
     @Transactional
     public void addCredit(DemoCreditAdd update) {
         Demo demo = demoRepository.findById(update.getId())
