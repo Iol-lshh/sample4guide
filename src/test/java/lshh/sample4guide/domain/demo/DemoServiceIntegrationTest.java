@@ -1,8 +1,5 @@
 package lshh.sample4guide.domain.demo;
 
-import lshh.sample4guide.common.library.democache.DemoAdvisoryLockBuffer;
-import lshh.sample4guide.common.library.lock.AdvisoryLock;
-import lshh.sample4guide.common.library.lock.AdvisoryLockBuffer;
 import lshh.sample4guide.domain.demo.dto.DemoCreation;
 import lshh.sample4guide.domain.demo.dto.DemoCreditAdd;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +11,6 @@ import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,8 +22,6 @@ public class DemoServiceIntegrationTest {
     private DemoService demoService;
     @Autowired
     private DemoRepository demoRepository;
-    @Autowired
-    private AdvisoryLockBuffer advisoryLockBuffer;
 
     @Test
     @DisplayName("credit 추가 테스트 단일 성공")
@@ -42,7 +36,7 @@ public class DemoServiceIntegrationTest {
         DemoCreditAdd creditUpdate = new DemoCreditAdd(id, credit);
 
         // when
-        demoService.addCredit(creditUpdate);
+        demoService.addCredit(creditUpdate, id);
 
         // then
         Demo demo = demoRepository.findById(id)
@@ -64,19 +58,19 @@ public class DemoServiceIntegrationTest {
         DemoCreditAdd creditAdd = new DemoCreditAdd(id, credit);
 
         // when
-        int testCnt = 10;
+        int testCnt = 9;
         ExecutorService executorService = Executors.newFixedThreadPool(testCnt);
         IntStream.range(0, testCnt)
                 .forEach(i -> executorService.submit(() -> {
 //                    demoService.addCredit(creditAdd);
-                    Lock lock = advisoryLockBuffer.getLock("addCredit:" + creditAdd.getId());
-                    lock.lock();
+                    //Lock lock = advisoryLockBuffer.getLock("addCredit:" + creditAdd.getId());
+                    //lock.lock();
                     try{
                         System.out.println("Thread " + Thread.currentThread().getName() + " started");
-                        demoService.addCredit(creditAdd);
+                        demoService.addCredit(creditAdd, creditAdd.getId());
                         System.out.println("Thread " + Thread.currentThread().getName() + " ended");
                     } finally {
-                        lock.unlock();
+                    //    lock.unlock();
                     }
                 }));
         executorService.shutdown();

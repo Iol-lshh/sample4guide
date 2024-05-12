@@ -10,13 +10,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.concurrent.locks.Lock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
 
 @ExtendWith(MockitoExtension.class)
 public class DemoServiceTest {
@@ -68,7 +66,7 @@ public class DemoServiceTest {
         DemoCreditAdd update = new DemoCreditAdd(1L, 200);
 
         // Act
-        demoService.addCredit(update);
+        demoService.addCredit(update, update.getId());
 
         // Assert
         assertEquals(300, demo.getCredit());
@@ -82,6 +80,6 @@ public class DemoServiceTest {
         DemoCreditAdd update = new DemoCreditAdd(1L, 200);
 
         // Act
-        assertThrows(IllegalArgumentException.class, () -> demoService.addCredit(update));
+        assertThrows(IllegalArgumentException.class, () -> demoService.addCredit(update, update.getId()));
     }
 }

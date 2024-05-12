@@ -1,11 +1,11 @@
-package lshh.sample4guide.common.library.democache;
+package lshh.sample4guide.common.library.localcache;
 
 import lshh.sample4guide.common.library.lock.AdvisoryLockBuffer;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public abstract class DemoAdvisoryLockBuffer extends DemoBuffer<Lock> implements AdvisoryLockBuffer {
+public abstract class LocalAdvisoryLockBuffer extends LocalBuffer<Lock> implements AdvisoryLockBuffer {
 
     public Lock getLock(String key) {
         cacheMap.putIfAbsent(key, new ReentrantLock());
