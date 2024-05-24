@@ -27,6 +27,6 @@ public class DemoController {
 
     @PostMapping("/add/credit")
     public void addCredit(@RequestBody DemoCreditAdd update) {
-        demoService.addCredit(update, update.getId());
+        demoService.addCredit(update);
     }
 }

@@ -36,7 +36,7 @@ public class DemoServiceIntegrationTest {
         DemoCreditAdd creditUpdate = new DemoCreditAdd(id, credit);
 
         // when
-        demoService.addCredit(creditUpdate, id);
+        demoService.addCredit(creditUpdate);
 
         // then
         Demo demo = demoRepository.findById(id)
@@ -67,7 +67,7 @@ public class DemoServiceIntegrationTest {
                     //lock.lock();
                     try{
                         System.out.println("Thread " + Thread.currentThread().getName() + " started");
-                        demoService.addCredit(creditAdd, creditAdd.getId());
+                        demoService.addCredit(creditAdd);
                         System.out.println("Thread " + Thread.currentThread().getName() + " ended");
                     } finally {
                     //    lock.unlock();

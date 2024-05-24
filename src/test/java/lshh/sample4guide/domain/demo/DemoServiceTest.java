@@ -66,7 +66,7 @@ public class DemoServiceTest {
         DemoCreditAdd update = new DemoCreditAdd(1L, 200);
 
         // Act
-        demoService.addCredit(update, update.getId());
+        demoService.addCredit(update);
 
         // Assert
         assertEquals(300, demo.getCredit());
@@ -80,6 +80,6 @@ public class DemoServiceTest {
         DemoCreditAdd update = new DemoCreditAdd(1L, 200);
 
         // Act
-        assertThrows(IllegalArgumentException.class, () -> demoService.addCredit(update, update.getId()));
+        assertThrows(IllegalArgumentException.class, () -> demoService.addCredit(update));
     }
 }

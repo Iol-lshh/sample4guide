@@ -27,9 +27,9 @@ public class DemoService {
         return demoRepository.save(demo);
     }
 
-    @AdvisoryLock(key = "{#key}")
+    @AdvisoryLock(key = "#update.getId()")
     @Transactional
-    public void addCredit(DemoCreditAdd update, Long key) {
+    public void addCredit(DemoCreditAdd update) {
         Demo demo = demoRepository.findById(update.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Demo not found"));
         demo.addCredit(update.getCredit());
