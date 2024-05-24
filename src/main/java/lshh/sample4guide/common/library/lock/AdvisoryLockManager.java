@@ -28,19 +28,16 @@ public class AdvisoryLockManager {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         AdvisoryLock advisoryLock = method.getAnnotation(AdvisoryLock.class);
-
         String keyExpression = advisoryLock.key();
         String key = LOCK_PREFIX + ExpressionLanguageParser.getDynamicValue(signature.getParameterNames(), joinPoint.getArgs(), keyExpression);
+        long waitTime = advisoryLock.waitTime();
+
         Lock lock = advisoryLockBuffer.getLock(key);
-        lock.lock();
+        if(!lock.tryLock(waitTime, advisoryLock.timeUnit())) {
+            throw new AdvisoryLockException("Failed to acquire lock - over wait time: " + key);
+        }
         try {
-//            boolean available = lock.tryLock(advisoryLock.waitTime(), advisoryLock.timeUnit());
-//            if (!available) {
-//                return false;
-//            }
             return aopTransaction.proceed(joinPoint);
-        } catch (InterruptedException exception) {
-            throw exception;
         } finally {
             lock.unlock();
         }
