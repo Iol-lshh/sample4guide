@@ -40,9 +40,9 @@ public class LogForm {
     public String toString(){
         return String.format("""
                 {
-                "traceId": "%s"
-                "spanId": "%s"
-                "payload": "%s"
+                    "traceId": "%s"
+                    "spanId": "%s"
+                    "payload": %s
                 }
                 """,
                 traceId,

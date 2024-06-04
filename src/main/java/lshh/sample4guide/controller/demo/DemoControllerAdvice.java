@@ -24,7 +24,7 @@ public class DemoControllerAdvice {
 
     @ExceptionHandler(value = Exception.class)
     public ApiResponse<?> handleException(Exception exception) {
-        log.error("Internal Server Error", exception);
+        log.error("Internal Server Error: {}", exception.getMessage());
         return ApiResponse.badRequest("Internal Server Error");
     }
 

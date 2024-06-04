@@ -1,5 +1,7 @@
 package lshh.sample4guide.domain.demo.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 @Getter
@@ -7,7 +9,8 @@ public class DemoCreditAdd {
     private final Long id;
     private final Integer credit;
 
-    public DemoCreditAdd(Long id, Integer credit) {
+    @JsonCreator
+    public DemoCreditAdd(@JsonProperty("id") Long id, @JsonProperty("credit") Integer credit) {
         this.id = id;
 
         if(credit == null || credit <= 0) {

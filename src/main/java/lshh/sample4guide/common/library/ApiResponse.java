@@ -1,7 +1,9 @@
 package lshh.sample4guide.common.library;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+@Getter
 public class ApiResponse<T> {
     T payload;
     HttpStatus status;
