@@ -82,15 +82,3 @@ public class DemoServiceIntegrationTest {
         assertEquals(originCredit + credit * testCnt, demo.getCredit());
     }
 }
-
-
-
-//                    Lock lock = advisoryLockBuffer.getLock("addCredit:" + creditAdd.getId());
-//                    lock.lock();
-//                    try{
-//                        System.out.println("Thread " + Thread.currentThread().getName() + " started");
-//                        demoService.addCredit(creditAdd);
-//                        System.out.println("Thread " + Thread.currentThread().getName() + " ended");
-//                    } finally {
-//                        lock.unlock();
-//                    }

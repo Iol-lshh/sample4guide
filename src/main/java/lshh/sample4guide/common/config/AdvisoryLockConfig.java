@@ -2,6 +2,8 @@ package lshh.sample4guide.common.config;
 
 import lombok.RequiredArgsConstructor;
 import lshh.sample4guide.common.library.aop.AopTransaction;
+import lshh.sample4guide.common.library.clock.Clock;
+import lshh.sample4guide.common.library.clock.ClockImplement;
 import lshh.sample4guide.common.library.lock.AdvisoryLockBuffer;
 import lshh.sample4guide.common.library.lock.AdvisoryLockManager;
 import org.springframework.context.annotation.Bean;
@@ -18,4 +20,6 @@ public class AdvisoryLockConfig {
         return new AdvisoryLockManager(advisoryLockBuffer, aopTransaction) {
         };
     }
+
+
 }

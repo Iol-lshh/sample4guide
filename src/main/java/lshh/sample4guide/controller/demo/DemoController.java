@@ -1,6 +1,7 @@
 package lshh.sample4guide.controller.demo;
 
 import lombok.RequiredArgsConstructor;
+import lshh.sample4guide.common.library.ApiResponse;
 import lshh.sample4guide.domain.demo.DemoService;
 import lshh.sample4guide.domain.demo.dto.DemoCreation;
 import lshh.sample4guide.domain.demo.dto.DemoCreditAdd;
@@ -16,17 +17,19 @@ public class DemoController {
     private final DemoService demoService;
 
     @GetMapping("/all")
-    public List<DemoVo> all() {
-        return demoService.findAll();
+    public ApiResponse<List<DemoVo>> all() {
+        return ApiResponse.ok(demoService.findAll());
     }
 
     @PostMapping("/create")
-    public Long create(@RequestBody DemoCreation creation) {
-        return demoService.create(creation);
+    public ApiResponse<Long> create(@RequestBody DemoCreation creation) {
+        Long result = demoService.create(creation);
+        return ApiResponse.ok(result);
     }
 
     @PostMapping("/add/credit")
-    public void addCredit(@RequestBody DemoCreditAdd update) {
+    public ApiResponse<?> addCredit(@RequestBody DemoCreditAdd update) {
         demoService.addCredit(update);
+        return ApiResponse.ok();
     }
 }

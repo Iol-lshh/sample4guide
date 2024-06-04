@@ -33,6 +33,7 @@ public class DemoService {
         Demo demo = demoRepository.findById(update.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Demo not found"));
         demo.addCredit(update.getCredit());
+
         demoRepository.save(demo);
     }
 }
