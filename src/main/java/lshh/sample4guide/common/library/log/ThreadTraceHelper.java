@@ -23,4 +23,8 @@ public class ThreadTraceHelper {
     public static void removeSpanId() {
         SPAN_ID.remove();
     }
+    public static void clear() {
+        TRACE_ID.remove();
+        SPAN_ID.remove();
+    }
 }

@@ -34,8 +34,7 @@ public class HttpRequestLoggingFilter implements Filter {
             ThreadTraceHelper.setSpanId(spanId);
             filterChain.doFilter(servletRequest, servletResponse);
         }finally {
-            ThreadTraceHelper.removeTraceId();
-            ThreadTraceHelper.removeSpanId();
+            ThreadTraceHelper.clear();
             long endTime = clock.currentTimeMillis();
             LogForm endLog = LogForm.of(traceId, spanId, String.format("""
                     {
