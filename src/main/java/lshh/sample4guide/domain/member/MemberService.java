@@ -3,6 +3,7 @@ package lshh.sample4guide.domain.member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lshh.sample4guide.common.library.clock.ClockManager;
+import lshh.sample4guide.common.library.lock.AdvisoryLock;
 import lshh.sample4guide.domain.member.component.LevelRepositoryForMember;
 import lshh.sample4guide.domain.member.component.MemberRepository;
 import lshh.sample4guide.domain.member.dto.MemberJoinCommand;
@@ -22,6 +23,7 @@ public class MemberService {
     private final ClockManager clockManager;
     private final LevelRepositoryForMember levelRepository;
 
+    @AdvisoryLock(key = "#command.loginId()")
     @Transactional
     public void join(MemberJoinCommand command){
         Member member = command.toEntity(clockManager.now());
