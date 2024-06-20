@@ -1,4 +1,4 @@
-package lshh.sample4guide.controller.demo;
+package lshh.sample4guide.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import lshh.sample4guide.common.library.lock.AdvisoryLockException;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
-@RestControllerAdvice(basePackages = "lshh.sample4guide.controller.demo")
-public class DemoControllerAdvice {
+@RestControllerAdvice(basePackages = "lshh.sample4guide.controller")
+public class DefaultControllerAdvice {
 
     @ExceptionHandler(value = IllegalArgumentException.class)
     public ApiResponse<?> handleIllegalArgumentException(IllegalArgumentException exception) {

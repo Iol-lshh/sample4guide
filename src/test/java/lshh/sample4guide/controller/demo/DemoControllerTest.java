@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lshh.sample4guide.common.library.ApiResponse;
 import lshh.sample4guide.domain.demo.DemoService;
 import lshh.sample4guide.domain.demo.dto.DemoCreation;
-import lshh.sample4guide.domain.demo.dto.DemoCreditAdd;
+import lshh.sample4guide.domain.demo.dto.DemoAddCredit;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,6 +88,6 @@ public class DemoControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
         log.info(result.getResponse().getContentAsString());
-        verify(demoService, times(1)).addCredit(any(DemoCreditAdd.class));
+        verify(demoService, times(1)).addCredit(any(DemoAddCredit.class));
     }
 }

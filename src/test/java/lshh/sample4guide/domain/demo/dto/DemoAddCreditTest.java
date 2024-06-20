@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DemoCreditAddTest {
+public class DemoAddCreditTest {
 
     @Test
     @DisplayName("DemoCreditUpdate 생성 성공")
     public void testDemoCreditUpdate_success() {
         Long id = 1L;
         Integer credit = 100;
-        DemoCreditAdd demoCreditUpdate = new DemoCreditAdd(id, credit);
+        DemoAddCredit demoCreditUpdate = new DemoAddCredit(id, credit);
         
         assertNotNull(demoCreditUpdate);
         assertEquals(id, demoCreditUpdate.getId());
@@ -23,7 +23,7 @@ public class DemoCreditAddTest {
     @DisplayName("DemoCreditUpdate 생성 실패 - credit null")
     public void testDemoCreditUpdate_failure_nullCredit() {
         Long id = 1L;
-        assertThrows(IllegalArgumentException.class, () -> new DemoCreditAdd(id, null));
+        assertThrows(IllegalArgumentException.class, () -> new DemoAddCredit(id, null));
     }
 
     @Test
@@ -31,7 +31,7 @@ public class DemoCreditAddTest {
     public void testDemoCreditUpdate_failure_negativeCredit() {
         Long id = 1L;
         Integer credit = -10;
-        assertThrows(IllegalArgumentException.class, () -> new DemoCreditAdd(id, credit));
+        assertThrows(IllegalArgumentException.class, () -> new DemoAddCredit(id, credit));
     }
 
     @Test
@@ -39,6 +39,6 @@ public class DemoCreditAddTest {
     public void testDemoCreditUpdate_failure_zeroCredit() {
         Long id = 1L;
         Integer credit = 0;
-        assertThrows(IllegalArgumentException.class, () -> new DemoCreditAdd(id, credit));
+        assertThrows(IllegalArgumentException.class, () -> new DemoAddCredit(id, credit));
     }
 }

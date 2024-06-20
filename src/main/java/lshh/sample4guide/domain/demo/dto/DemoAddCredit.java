@@ -5,12 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 @Getter
-public class DemoCreditAdd {
+public class DemoAddCredit {
     private final Long id;
     private final Integer credit;
 
     @JsonCreator
-    public DemoCreditAdd(@JsonProperty("id") Long id, @JsonProperty("credit") Integer credit) {
+    public DemoAddCredit(@JsonProperty("id") Long id, @JsonProperty("credit") Integer credit) {
         this.id = id;
 
         if(credit == null || credit <= 0) {

@@ -3,21 +3,21 @@ package lshh.sample4guide.common.library.log;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-import lshh.sample4guide.common.library.clock.Clock;
+import lshh.sample4guide.common.library.clock.ClockManager;
 
 import java.io.IOException;
 
 @Slf4j
 public class HttpRequestLoggingFilter implements Filter {
-    private final Clock clock;
+    private final ClockManager clockManager;
 
-    public HttpRequestLoggingFilter(Clock clock) {
-        this.clock = clock;
+    public HttpRequestLoggingFilter(ClockManager clockManager) {
+        this.clockManager = clockManager;
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        long startTime = clock.currentTimeMillis();
+        long startTime = clockManager.currentTimeMillis();
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String traceId = request.getHeader("traceId");
         String spanId = request.getRequestId() + "_" + startTime;
@@ -35,7 +35,7 @@ public class HttpRequestLoggingFilter implements Filter {
             filterChain.doFilter(servletRequest, servletResponse);
         }finally {
             ThreadTraceHelper.clear();
-            long endTime = clock.currentTimeMillis();
+            long endTime = clockManager.currentTimeMillis();
             LogForm endLog = LogForm.of(traceId, spanId, String.format("""
                     {
                         "duration": "%d"

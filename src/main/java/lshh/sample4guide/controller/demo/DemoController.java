@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lshh.sample4guide.common.library.ApiResponse;
 import lshh.sample4guide.domain.demo.DemoService;
 import lshh.sample4guide.domain.demo.dto.DemoCreation;
-import lshh.sample4guide.domain.demo.dto.DemoCreditAdd;
+import lshh.sample4guide.domain.demo.dto.DemoAddCredit;
 import lshh.sample4guide.domain.demo.dto.DemoVo;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +28,7 @@ public class DemoController {
     }
 
     @PostMapping("/add/credit")
-    public ApiResponse<?> addCredit(@RequestBody DemoCreditAdd update) {
+    public ApiResponse<?> addCredit(@RequestBody DemoAddCredit update) {
         demoService.addCredit(update);
         return ApiResponse.ok();
     }

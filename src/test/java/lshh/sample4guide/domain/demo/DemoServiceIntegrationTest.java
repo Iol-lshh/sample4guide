@@ -1,7 +1,7 @@
 package lshh.sample4guide.domain.demo;
 
 import lshh.sample4guide.domain.demo.dto.DemoCreation;
-import lshh.sample4guide.domain.demo.dto.DemoCreditAdd;
+import lshh.sample4guide.domain.demo.dto.DemoAddCredit;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class DemoServiceIntegrationTest {
         assertTrue(target.isPresent());
         Long id = target.get().getId();
         Integer credit = 100;
-        DemoCreditAdd creditUpdate = new DemoCreditAdd(id, credit);
+        DemoAddCredit creditUpdate = new DemoAddCredit(id, credit);
 
         // when
         demoService.addCredit(creditUpdate);
@@ -55,7 +55,7 @@ public class DemoServiceIntegrationTest {
         Long id = target.get().getId();
         Integer originCredit = target.get().getCredit();
         Integer credit = 100;
-        DemoCreditAdd creditAdd = new DemoCreditAdd(id, credit);
+        DemoAddCredit creditAdd = new DemoAddCredit(id, credit);
 
         // when
         int testCnt = 9;

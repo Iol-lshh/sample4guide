@@ -1,7 +1,7 @@
 package lshh.sample4guide.domain.demo;
 
 import lshh.sample4guide.domain.demo.dto.DemoCreation;
-import lshh.sample4guide.domain.demo.dto.DemoCreditAdd;
+import lshh.sample4guide.domain.demo.dto.DemoAddCredit;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -63,7 +63,7 @@ public class DemoServiceTest {
         // Arrange
         Demo demo = Demo.of(1L, "test1", 100);
         given(demoRepository.findById(any(Long.class))).willReturn(Optional.of(demo));
-        DemoCreditAdd update = new DemoCreditAdd(1L, 200);
+        DemoAddCredit update = new DemoAddCredit(1L, 200);
 
         // Act
         demoService.addCredit(update);
@@ -77,7 +77,7 @@ public class DemoServiceTest {
     void testAddCredit_NonExistentDemo() {
         // Arrange
         given(demoRepository.findById(any(Long.class))).willReturn(Optional.empty());
-        DemoCreditAdd update = new DemoCreditAdd(1L, 200);
+        DemoAddCredit update = new DemoAddCredit(1L, 200);
 
         // Act
         assertThrows(IllegalArgumentException.class, () -> demoService.addCredit(update));
