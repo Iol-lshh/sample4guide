@@ -1,6 +1,5 @@
 package lshh.sample4guide.common.config;
 
-import lshh.sample4guide.domain.level.Level;
 import lshh.sample4guide.domain.level.LevelService;
 import lshh.sample4guide.domain.level.dto.LevelSaveCommand;
 import org.springframework.context.annotation.Configuration;

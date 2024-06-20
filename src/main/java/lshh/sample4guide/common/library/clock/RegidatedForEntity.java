@@ -17,7 +17,6 @@ public class RegidatedForEntity {
     private LocalDateTime created;
     @Column(nullable = false)
     private LocalDateTime updated;
-    @Column(nullable = true)
     private LocalDateTime deleted;
 
     public static RegidatedForEntity create(LocalDateTime now){
