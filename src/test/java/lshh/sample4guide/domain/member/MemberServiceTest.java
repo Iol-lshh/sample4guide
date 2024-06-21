@@ -1,6 +1,8 @@
 package lshh.sample4guide.domain.member;
 
 import lshh.sample4guide.common.library.clock.ClockManager;
+import lshh.sample4guide.domain.member.component.ItemRepositoryForMember;
+import lshh.sample4guide.domain.member.component.LevelRepositoryForMember;
 import lshh.sample4guide.domain.member.component.MemberRepository;
 import lshh.sample4guide.domain.member.dto.MemberJoinCommand;
 import org.junit.jupiter.api.DisplayName;
@@ -20,6 +22,11 @@ public class MemberServiceTest {
     
     @Mock
     private ClockManager clockManager;
+
+    @Mock
+    private LevelRepositoryForMember levelRepository;
+    @Mock
+    private ItemRepositoryForMember itemRepository;
 
     @InjectMocks
     private MemberService memberService;

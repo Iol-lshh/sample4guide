@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class LevelService {
     private final LevelRepository levelRepository;
 
-    public void saveLevel(LevelSaveCommand command){
+    public void save(LevelSaveCommand command){
         Level level = command.toEntity();
         levelRepository.save(level);
     }

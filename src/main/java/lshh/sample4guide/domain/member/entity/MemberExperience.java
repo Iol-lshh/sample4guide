@@ -1,9 +1,6 @@
 package lshh.sample4guide.domain.member.entity;
 
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lshh.sample4guide.common.library.clock.RegidatedForHistory;
 import lshh.sample4guide.domain.member.Member;
 
